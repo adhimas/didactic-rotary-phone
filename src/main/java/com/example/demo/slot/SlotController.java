@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,13 +16,13 @@ import java.util.Optional;
 public class SlotController {
     private final SlotService service;
 
-    @GetMapping("/")
+    @GetMapping
     public List<SlotResponse> findAll(
             @PathVariable int uid,
             @RequestParam(required = false) String rangeStart,
             @RequestParam(required = false) String rangeEnd
     ) {
-        List<Slot> slots = new ArrayList<>();
+        List<Slot> slots;
 
         if (rangeStart != null && rangeEnd != null) {
             Range<ZonedDateTime> range = Range.closedOpen(
