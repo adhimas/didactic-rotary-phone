@@ -2,9 +2,12 @@ package com.example.demo.slot;
 
 import com.example.demo.slot.dto.SlotRequest;
 import com.example.demo.slot.dto.SlotResponse;
+import io.hypersistence.utils.hibernate.type.range.Range;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,8 +18,23 @@ public class SlotController {
     private final SlotService service;
 
     @GetMapping("/")
-    public List<SlotResponse> findAll() {
-        List<Slot> slots = service.findAll();
+    public List<SlotResponse> findAll(
+            @PathVariable int uid,
+            @RequestParam(required = false) String rangeStart,
+            @RequestParam(required = false) String rangeEnd
+    ) {
+        List<Slot> slots = new ArrayList<>();
+
+        if (rangeStart != null && rangeEnd != null) {
+            Range<ZonedDateTime> range = Range.closedOpen(
+                    ZonedDateTime.parse(rangeStart),
+                    ZonedDateTime.parse(rangeEnd)
+            );
+            slots = service.findUserSlotsByRange(uid, range);
+        } else {
+            slots = service.findUserSlots(uid);
+        }
+
         return slots.stream().
                 map(slot -> new SlotResponse(
                         slot.getStartEnd().lower(),

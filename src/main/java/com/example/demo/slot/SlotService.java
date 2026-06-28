@@ -28,4 +28,12 @@ public class SlotService {
 
         return repository.save(slot);
     }
+
+    public List<Slot> findUserSlots(int id) {
+        return repository.findByUser(id);
+    }
+
+    public List<Slot> findUserSlotsByRange(int id, Range<ZonedDateTime> range) {
+        return repository.findByUserAndRange(id, range.asString());
+    }
 }
