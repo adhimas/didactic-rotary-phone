@@ -1,10 +1,15 @@
 package com.example.demo.slot;
 
+import io.hypersistence.utils.hibernate.type.range.PostgreSQLRangeType;
+import io.hypersistence.utils.hibernate.type.range.Range;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
+
+import java.time.ZonedDateTime;
 
 @Entity
 @Getter
@@ -14,12 +19,14 @@ import lombok.Setter;
 @Table(name = "slots")
 public class Slot {
     @Id
-    private int id;
+    private Integer id;
 
-    // private int uid;
-    // private int mid;
+    private Integer uid;
+    private Integer mid;
 
+    // custom type for PostgreSQL range type:
+    // https://github.com/vladmihalcea/hypersistence-utils
     @Column(columnDefinition = "tstzrange")
-    @Convert(converter = TimeRangeConverter.class)
-    private TimeRange startEnd;
+    @Type(PostgreSQLRangeType.class)
+    private Range<ZonedDateTime> startEnd;
 }
