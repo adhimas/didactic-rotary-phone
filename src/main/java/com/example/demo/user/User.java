@@ -16,6 +16,7 @@ import lombok.Setter;
 @Table(name = "users")
 public class User {
     @Id
-    private int id;
+    private Integer id;
+
     private String name;
 }
