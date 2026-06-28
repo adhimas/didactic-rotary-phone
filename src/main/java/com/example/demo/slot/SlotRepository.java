@@ -9,14 +9,14 @@ import java.util.List;
 public interface SlotRepository extends JpaRepository<Slot, Integer> {
     @Query(value = """
 SELECT * FROM slots
-WHERE uid = :uid
+WHERE uid = :userId
 """, nativeQuery = true)
-    List<Slot> findByUser(@Param("uid") int uid);
+    List<Slot> findByUser(@Param("userId") int userId);
 
     @Query(value = """
 SELECT * FROM slots
-WHERE uid = :uid
+WHERE uid = :userId
 AND start_end <@ CAST(:range AS tstzrange)
 """, nativeQuery = true)
-    List<Slot> findByUserAndRange(@Param("uid") int uid, @Param("range") String range);
+    List<Slot> findByUserAndRange(@Param("userId") int userId, @Param("range") String range);
 }
