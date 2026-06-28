@@ -27,4 +27,16 @@ public class SlotController {
                 )).
                 toList();
     }
+
+    @PostMapping("/")
+    public SlotResponse create(@PathVariable int uid, @RequestBody SlotRequest request) {
+        Slot slot = service.createSlot(uid, request);
+        return new SlotResponse(
+                slot.getStartEnd().lower(),
+                slot.getStartEnd().upper(),
+                slot.getId(),
+                slot.getUid(),
+                Optional.ofNullable(slot.getMid())
+        );
+    }
 }
