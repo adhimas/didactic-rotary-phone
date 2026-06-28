@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/users/{id}/slots")
+@RequestMapping("api/users/{uid}/slots")
 public class SlotController {
     private final SlotService service;
 
