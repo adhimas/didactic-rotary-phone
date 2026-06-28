@@ -1,5 +1,6 @@
 package com.example.demo.slot;
 
+import com.example.demo.slot.dto.MeetingRequest;
 import com.example.demo.slot.dto.SlotRequest;
 import com.example.demo.slot.dto.SlotResponse;
 import io.hypersistence.utils.hibernate.type.range.Range;
@@ -48,6 +49,21 @@ public class SlotController {
     @PostMapping("/")
     public SlotResponse create(@PathVariable int uid, @RequestBody SlotRequest request) {
         Slot slot = service.createSlot(uid, request);
+        return new SlotResponse(
+                slot.getStartEnd().lower(),
+                slot.getStartEnd().upper(),
+                slot.getId(),
+                slot.getUid(),
+                Optional.ofNullable(slot.getMid())
+        );
+    }
+
+    @PostMapping("/{sid}/meeting")
+    public SlotResponse createMeeting(
+            @PathVariable int sid,
+            @RequestBody MeetingRequest request
+    ) {
+        Slot slot = service.createMeeting(sid, request.title());
         return new SlotResponse(
                 slot.getStartEnd().lower(),
                 slot.getStartEnd().upper(),
