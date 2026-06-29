@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+// TODO: add ordering
 public interface SlotRepository extends JpaRepository<Slot, Integer> {
     @Query(value = """
 SELECT * FROM slots
