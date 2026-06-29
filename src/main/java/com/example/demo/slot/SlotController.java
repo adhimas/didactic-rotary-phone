@@ -75,4 +75,6 @@ public class SlotController {
                 Optional.ofNullable(slot.getMid())
         );
     }
+
+    // TODO: implement other API for slot entity
 }
