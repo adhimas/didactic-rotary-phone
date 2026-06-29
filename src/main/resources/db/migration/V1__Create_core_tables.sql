@@ -11,8 +11,11 @@ CREATE TABLE meetings (
     description varchar(200)
 );
 
+-- PostgreSQL's range types:
 -- https://www.postgresql.org/docs/current/rangetypes.html#RANGETYPES-CONSTRAINT
 -- https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-EXCLUSION
+-- TODO: explore a dedicated status field (e.g., free/busy)
+-- TODO: add integration tests with Testcontainers to verify schema-related scenarios (e.g., duplicate slot for a user)
 CREATE TABLE slots (
     id integer PRIMARY KEY,
     uid integer REFERENCES users,

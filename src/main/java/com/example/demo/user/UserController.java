@@ -15,4 +15,6 @@ public class UserController {
     public List<User> findAll() {
         return service.findAll();
     }
+
+    // TODO: implement other API for user entity
 }

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Service
@@ -22,11 +21,14 @@ public class SlotService {
     }
 
     public Slot createSlot(int uid, SlotRequest request) {
+        // TODO: update to more scalable IDs
         int id = ThreadLocalRandom.current().nextInt(0, 100);
 
         Slot slot = new Slot();
         slot.setId(id);
         slot.setUid(uid);
+
+        // set range to have inclusive start point and exclusive end point
         slot.setStartEnd(Range.closedOpen(request.start(), request.end()));
 
         return repository.save(slot);
@@ -44,7 +46,9 @@ public class SlotService {
     public Slot createMeeting(int slotId, String title) {
         Slot slot = repository.findById(slotId).orElseThrow();
 
+        // TODO: update to more scalable IDs
         int meetingId = ThreadLocalRandom.current().nextInt(0, 100);
+
         Meeting meeting = new Meeting();
         meeting.setId(meetingId);
         meeting.setTitle(title);

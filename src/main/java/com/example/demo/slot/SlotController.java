@@ -14,6 +14,8 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/users/{uid}/slots")
+// TODO: validate request
+// TODO: handle error
 public class SlotController {
     private final SlotService service;
 

@@ -8,5 +8,5 @@ public record SlotResponse(
         ZonedDateTime end,
         int id,
         int userId,
-        Optional<Integer> eventId
+        Optional<Integer> eventId // e.g., a meeting
 ) {}
