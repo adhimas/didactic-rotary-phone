@@ -16,10 +16,6 @@ public class SlotService {
     private final SlotRepository repository;
     private final MeetingRepository meetingRepository;
 
-    public List<Slot> findAll() {
-        return repository.findAll();
-    }
-
     public Slot createSlot(int uid, SlotRequest request) {
         // TODO: update to more scalable IDs
         int id = ThreadLocalRandom.current().nextInt(0, 100);
