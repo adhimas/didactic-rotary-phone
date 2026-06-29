@@ -44,6 +44,7 @@ public class SlotService {
 
     @Transactional
     public Slot createMeeting(int slotId, String title) {
+        // TODO: handle error
         Slot slot = repository.findById(slotId).orElseThrow();
 
         // TODO: update to more scalable IDs
