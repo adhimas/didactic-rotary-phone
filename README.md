@@ -8,9 +8,8 @@ user's calendar.
 When a **Meeting** is created, the Slots of the corresponding participants are
 updated, effectively marking them as busy.
 
-The exact schema definition is available under the
-[src/main/resources/db/migration/V1__Create_core_tables.sql](migration
-directory).
+The exact schema definition is available under the [migration
+directory](src/main/resources/db/migration/V1__Create_core_tables.sql).
 
 ## Instructions
 
