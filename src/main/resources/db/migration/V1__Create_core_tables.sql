@@ -16,6 +16,7 @@ CREATE TABLE meetings (
 -- https://www.postgresql.org/docs/current/ddl-constraints.html#DDL-CONSTRAINTS-EXCLUSION
 -- TODO: explore a dedicated status field (e.g., free/busy)
 -- TODO: add integration tests with Testcontainers to verify schema-related scenarios (e.g., duplicate slot for a user)
+-- TODO: handle potential orphaned meetings
 CREATE TABLE slots (
     id integer PRIMARY KEY,
     uid integer REFERENCES users,
