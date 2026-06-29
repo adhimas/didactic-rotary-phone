@@ -28,6 +28,7 @@ public class SlotController {
         List<Slot> slots;
 
         if (rangeStart != null && rangeEnd != null) {
+            // TODO: test URL-encoded range input strings
             Range<ZonedDateTime> range = Range.closedOpen(
                     ZonedDateTime.parse(rangeStart),
                     ZonedDateTime.parse(rangeEnd)
